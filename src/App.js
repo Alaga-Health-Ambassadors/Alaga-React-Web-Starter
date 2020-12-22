@@ -60,7 +60,7 @@ const App = props => {
                 )
               })
             }
-            <Redirect to={'/main'} />
+            <Redirect to={'/welcome'} />
           </Switch>
         </Router>
       </div>
