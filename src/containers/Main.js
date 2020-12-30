@@ -1,49 +1,87 @@
-import React, { useEffect } from "react";
-import { connect } from "react-redux";
-import { withStyles } from "@material-ui/core/styles";
-import TextField from '@material-ui/core/TextField';
+import React from 'react';
+import Logo from '../assets/images/logo-only-colored.png';
 import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import TextField from '@material-ui/core/TextField';
+import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
 
-const styles = theme => ({
-  root: {
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    marginTop: theme.spacing(8),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#fff',
-    width: '100vw',
-    height: '100vh',
   },
-});
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondarygit .main,
+  },
+  form: {
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(1),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+}));
 
-const Main = props => {
-
-  const { 
-    authentication,
-    classes 
-  } = props;
+export default function SignIn() {
+  const classes = useStyles();
 
   return (
-    <div className={classes.root}>
-      <TextField id="standard-basic" label="Standard" />
-      <Button variant="contained" color="primary">
-        Primary
-      </Button>
-    </div>
+    <Container component="main" maxWidth="xs">
+      <CssBaseline />
+      <div className={classes.paper}>
+      <img src={Logo} width="100px"/>
+        <Typography component="h1" variant="h5">
+          Sign in
+        </Typography>
+        <form className={classes.form} noValidate>
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="email"
+            label="Email Address"
+            name="email"
+            autoComplete="email"
+            autoFocus
+          />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            name="password"
+            label="Password"
+            type="password"
+            id="password"
+            autoComplete="current-password"
+          />
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+          >
+            Log In
+          </Button>
+          <Grid container>
+            <Grid item xs>
+            </Grid>
+            <Grid item>
+            </Grid>
+          </Grid>
+        </form>
+      </div>
+      <Box mt={8}>
+      </Box>
+    </Container>
   );
-};
-
-const mapStateToProps = state => {
-  return {
-    authentication: state.authentication
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {}
-};
-
-export default withStyles(styles)(connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Main));
+}
